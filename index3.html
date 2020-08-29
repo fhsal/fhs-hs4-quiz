@@ -9,23 +9,22 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- <button id="myBtn">Try it</button> -->
-    <!-- <button id="startBtn"> Start Quiz</button> -->
-
-    <!-- <button button id = "answerOne" rightAnswer="1" > yyy</button> -->
-    <!-- <button button id = "answerTwo" > xxx</button> 
-    <button id="answerThree" > a2 </button>
-    <button id="answerFour" > a2 </button> -->
 
     <div class="button">
         <br>
-      <button id="startBtn" style= "margin-left: 25px"> Start Quiz</button>
+        <button id="startBtn" style= "margin-left: 25px"> Start Quiz</button>
+
+        <button id="timerDisplay" style= "margin-left: 200px; color: rgb(11, 112, 19); width: auto"> 120 seconds for quiz </button>
     </div>
 
+      <div class="button">
+        <br>
+      <button id="errorDisplay" style= "margin-left: 300px; width: auto; border:none; background-color: orangered" float: right> incorrect answer </button>
+      <button id="scoreDisplay" style= "width: auto" > score</button> 
+      </div>
+  
+
     <p> <h2 style= "margin-left: 25px; width: auto; Padding-top: 5px"> Question </h2></p>
-
- <!-- </script> -->
-
 
         <button button id= "question-display" style= "height:45px; width: auto; font-size: 25px; margin-left: 25px"> - - - -  - - - - - - - - - - - -  </button>
           
@@ -48,23 +47,31 @@
 
           </div>
   
-
-
-
-
-
     <div> 
-        <button id="nextQuestion" class="btn"> Next Question </button>
+        <button id="nextQuestion" class="btn" > Next Question </button>
         <button id="StartOver" class="btn"> Start Over </button>
-        <button id="submitInitials" class="btn"> Submit </button>
+        <button id="submitInitials" class="btn" display="hidden"> Submit </button>
         <button id="clearHighScores" class="btn"> Clear High Scores </button>
     </div>
-
-
+<h7 style= "margin-left: 25px"> High Scores: </h7> <br>
 
 
 
 <script src="script.js"></script>
+
+
+<script>
+
+// hideButtons()
+
+
+</script>
+
+
+
+
+
+
 
 </body>
 </html>

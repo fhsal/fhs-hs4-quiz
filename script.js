@@ -9,46 +9,118 @@ var round = 0;
 var answer;
 var response ="";
 var score = 0;
-var timeLeft = 120;
-
-// var answerOne = document.getElementById("answerOne");
-// answerOne.addEventListener("click",testAnswer);
-//       if ( "a" === answer ) { 
-//     // increment correct variable and then call renderOneQuestion - and do the increment inside the render function, if they guess wrong then subtract time
-
-//       }
-//     else {
-//     // subtract time, and move on to the next question by calling renderOneQuestion
-
-//     }
-
-//     } 
+var totalTime = 120;
+var secondsElapsed = 0;
+var timeLeft = totalTime - secondsElapsed
+var interval 
+var numberOfAnswers = 0
 
 
-// // add same event listener to answers 2, 3, 4 with if statment B/C/D 
+// functions to hide/show buttons at during quiz
+
+function hideButtons() {
+
+document.getElementById("errorDisplay").style.visibility= "hidden";
+document.getElementById("scoreDisplay").style.visibility= "hidden";
+document.getElementById("nextQuestion").style.visibility= "hidden";
+document.getElementById("StartOver").style.visibility= "hidden";
+document.getElementById("submitInitials").style.visibility= "hidden";
+document.getElementById("clearHighScores").style.visibility= "hidden";
+
+}
+
+function showQuizButtons() {
+  document.getElementById("startBtn").style.visibility= "hidden";
+  document.getElementById("nextQuestion").style.visibility= "visible";
+  document.getElementById("StartOver").style.visibility= "visible";
+  document.getElementById("submitInitials").style.visibility= "hidden";
+  document.getElementById("clearHighScores").style.visibility= "hidden";
+  
+  }
+
+  function showEndQuizButtons() {
+
+    document.getElementById("startBtn").style.visibility= "hidden";
+    document.getElementById("nextQuestion").style.visibility= "hidden";
+    document.getElementById("StartOver").style.visibility= "visible";
+    document.getElementById("submitInitials").style.visibility= "visible";
+    document.getElementById("clearHighScores").style.visibility= "visible";
+    
+    }
+
+// function to start quiz
+
+// function startQuiz() {
+
+//   timeleft = 120;
+//   totalTime = 120;
+//   round = 0;
+
+//   while (round > )
+
+
+// }
+
+
+// test answer to determine if it is correct.  color time box red if wrong, display message and debit timeLeft,
+// reset color in time box to white if correct and increase score
 
 function testAnswer(response) {
-    if (response === answer) {
-        console.log("right answer " + answer)
-        score=score+10
-        renderOneRound()}
+    
+  document.getElementById("scoreDisplay").style.visibility= "visible";
+  // numberOfAnswers = numberOfAnswers + 1
 
-     else {
+    if ((response === answer)) {
 
-        console.log("wrong answer")
-        renderOneRound()
-        timeLeft= timeLeft - 20}
+          score=score+10;
+          document.getElementById("timerDisplay").setAttribute ("style" ,
+                          "margin-left: 235px; background-color: white; width: auto")
+          document.getElementById("errorDisplay").style.visibility= "hidden";
+          document.getElementById("scoreDisplay").innerHTML = (score);
+          document.getElementById("scoreDisplay").style.width= "55px";
 
-    }   
+          console.log("right answer "+ answer);
+          console.log("score "+ score);
+          console.log("round "+ round);
+
+          nextRound()
+        
+        }
+
+      else {
+          score = score-5;
+          timeLeft= timeLeft - 20;
+          console.log("wrong answer");
+          console.log("round "+ round);
+          document.getElementById("timerDisplay").setAttribute ("style" ,
+                          "margin-left: 235px; background-color: orangered; color: white; width: auto")
+          document.getElementById("errorDisplay").style.visibility= "visible";
+          document.getElementById("scoreDisplay").innerHTML = (score);
+          document.getElementById("scoreDisplay").style.width= "55px";
+
+
+
+          nextRound()
+
+      }
+    // }
+  }
+
 
 function nextRound() {
-    if(timeLeft>0 && (questArray.length > (round +1))) {
+
+  document.getElementById("timerDisplay").setAttribute ("style" ,
+  "margin-left: 235px; background-color: white; color: black; width: auto")
+
+    if(timeLeft>0 && (questArray.length > round)) {
 
       renderOneRound() }
 
     else { 
 
       alert("Game Over")
+      stopTimer()
+      showEndQuizButtons()
 
       }
     }
@@ -58,38 +130,53 @@ function saveScore() {
 
 }
 
+// timer block
+
+function renderTime () {
+
+  if (timeLeft > 1) {
+
+      document.getElementById("timerDisplay").innerHTML = timeLeft + ' seconds left'; }
+
+  else { 
+    
+    clearInterval(interval);
+    alert("Time up!")
+    stopTimer()
+    showEndQuizButtons()
+
+}
+
+  }
 
 
+  // document.getElementById("passwrd-display").setAttribute ("style" ,
+  //                     "background-color:lightgoldenrodyellow");
 
 
+function stopTimer(){ clearInterval(interval)}
 
+function startTimer() {
+  
+   //   // We only want to start the timer if timeLeft is > 0
+  //  while (timeLeft > 0) {
+   //     /* The "interval" variable here using "setInterval()" begins the recurring increment of the
+      //  secondsElapsed variable which is used to check if the time is up */
+      interval = setInterval(function() {
+        secondsElapsed++;
 
-// var x = document.getElementById("myBtn");
-// x.addEventListener("mouseover", myFunction);
-// x.addEventListener("click", mySecondFunction);
-// x.addEventListener("mouseout", myThirdFunction);
+        // So renderTime() is called here once every second.
 
+        timeLeft = totalTime - secondsElapsed;
+        console.log(timeLeft);
 
+        renderTime() 
+      }, 1000);
+}
 
-
-
-
-
-
-    // function myFunction() {
-    // alert("next question")
-    // }
-
-//     function mySecondFunction() {
-//     document.getElementById("demo").innerHTML += "Clicked!<br>"
-//     }
-
-//     function myThirdFunction() {
-//     document.getElementById("demo").innerHTML += "Moused out!<br>"
-//     }
 
 var startQ = document.getElementById("startBtn");
-startQ.addEventListener("click", renderOneRound);
+startQ.addEventListener("click", startQuiz);
 
 // answer button actions
 
@@ -112,7 +199,7 @@ var nextQ = document.getElementById("nextQuestion");
   nextQ.addEventListener("click", nextRound);
 
 var restart = document.getElementById("StartOver");
-  restart.addEventListener("click", function(){alert("start over")});
+  restart.addEventListener("click", startQuiz);
 
 var submitInitials = document.getElementById("submitInitials");
   submitInitials.addEventListener("click", function(){alert("submit Initials")});
@@ -179,21 +266,26 @@ var questArray = [
 
 // start quiz by initializing time and round count and generating fist set of questions 
 
+hideButtons()
+
 function startQuiz() {
 
     round = 0;
-    timeLeft = 120
+    numberOfAnswers = 0;
+    timeLeft = 120;
+    hideButtons();
+    showQuizButtons();
+    startTimer();
     renderOneRound();
 
 }
 
 
+
 // render a single question round
 
-// renderOneRound()
-
-
 function renderOneRound() {
+
     quest= questArray[round].question;
     answer= questArray[round].answer;
     chA= questArray[round].choices.a;
@@ -210,46 +302,6 @@ function renderOneRound() {
     round=round+1
     }
 
-// var nextRound = document.querySelector("#nextQuestion");
-
-
-
-// var startTest = document.querySelector("#StartQuizBtn");
-
-// startTest.addEventListener("click", renderOneRound)
-
-
-// Add event listener to generate button
-    // nextQuestion.addEventListener("click", renderOneRound);
-
-
-
-// render questions for all rounds - testing 
-
-// renderQuestions()
-
-// function renderQuestions() {
-
-//   for (i = 0; questArray.length; i++) {
-
-//     question = questArray[i].question;
-//     answer = questArray[i].answer;
-//     chA = questArray[i].choices.a;
-//     chB = questArray[i].choices.b;
-//     chC = questArray[i].choices.c;
-//     chD = questArray[i].choices.d;
-
-
-
-//     console.log("iteration " + i);
-//     console.log(question);
-//     console.log(answer);
-//     console.log(chA);
-//     console.log(chB);
-//     console.log(chC);
-//     console.log(chD);
-
-    // display the answer options
 
 
 
@@ -258,63 +310,3 @@ function renderOneRound() {
 
 
 
-
-
-
-
-  // the += appends to the data we started on the line above
-
-  // questions-form.innerHTML += "<label> <input type='radio' name='choices' value='A'> "+chA+"</label><br>";
-  // questions-form += "<label> <input type='radio' name='choices' value='B'> "+chB+"</label><br>";
-  // questions-form += "<label> <input type='radio' name='choices' value='C'> "+chC+"</label><br><br>";
-  // questions-form += "<label> <input type='radio' name='choices' value='C'> "+chC+"</label><br><br>";
-  // questions-form += "<button onclick='checkAnswer()'>Submit Answer</button>";
-//   }
-// }
-
-
-
-
-
-
-
-// renderTodos();
-
-// // question = document.getElementById(questArray).
-
-
-
-
-// function renderTodos() {
-//   // Clear todoList element and update todoCountSpan
-//   todoList.innerHTML = "";
-//   todoCountSpan.textContent = todos.length;
-
-//   // Render a new li for each todo
-//   for (var i = 0; i < todos.length; i++) {
-//     var todo = todos[i];
-
-//     var li = document.createElement("li");
-//     li.textContent = todo;
-//     todoList.appendChild(li);
-//   }
-// }
-
-// // When form is submitted...
-// todoForm.addEventListener("submit", function(event) {
-//   event.preventDefault();
-
-//   var todoText = todoInput.value.trim();
-
-//   // Return from function early if submitted todoText is blank
-//   if (todoText === "") {
-//     return;
-//   }
-
-//   // Add new todoText to todos array, clear the input
-//   todos.push(todoText);
-//   todoInput.value = "";
-
-//   // Re-render the list
-//   renderTodos();
-// }
