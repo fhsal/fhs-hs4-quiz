@@ -13,7 +13,10 @@ var totalTime = 120;
 var secondsElapsed = 0;
 var timeLeft = totalTime - secondsElapsed
 var interval 
-var numberOfAnswers = 0
+var highScores = "";
+var savedScores = "";
+var initials = "";
+localStorage.savedScores= "High Scores: ";
 
 
 // functions to hide/show buttons at during quiz
@@ -47,19 +50,6 @@ function showQuizButtons() {
     document.getElementById("clearHighScores").style.visibility= "visible";
     
     }
-
-// function to start quiz
-
-// function startQuiz() {
-
-//   timeleft = 120;
-//   totalTime = 120;
-//   round = 0;
-
-//   while (round > )
-
-
-// }
 
 
 // test answer to determine if it is correct.  color time box red if wrong, display message and debit timeLeft,
@@ -107,6 +97,25 @@ function testAnswer(response) {
   }
 
 
+function saveScore() {
+
+  initials = prompt("enter your initials to save score!");
+  savedScores = localStorage.savedScores;
+  highScores = savedScores + initials + ":" + score + ", "
+  document.getElementById("showHighScores").innerHTML = highScores.slice(0,-2);
+  localStorage.savedScores = highScores;
+
+}
+
+function clearScores() {
+  localStorage.clear()
+  localStorage.savedScores = "High Scores: "
+  document.getElementById("showHighScores").innerHTML = "";
+
+}
+
+
+
 function nextRound() {
 
   document.getElementById("timerDisplay").setAttribute ("style" ,
@@ -124,11 +133,6 @@ function nextRound() {
 
       }
     }
-
-function saveScore() {
-
-
-}
 
 // timer block
 
@@ -202,10 +206,10 @@ var restart = document.getElementById("StartOver");
   restart.addEventListener("click", startQuiz);
 
 var submitInitials = document.getElementById("submitInitials");
-  submitInitials.addEventListener("click", function(){alert("submit Initials")});
+  submitInitials.addEventListener("click", saveScore);
 
 var clearHighScores = document.getElementById("clearHighScores");
-  clearHighScores.addEventListener("click", function(){alert("clearHighScores")});
+  clearHighScores.addEventListener("click", clearScores);
 
 
 
@@ -271,11 +275,12 @@ hideButtons()
 function startQuiz() {
 
     round = 0;
-    numberOfAnswers = 0;
+    // numberOfAnswers = 0;
     timeLeft = 120;
     hideButtons();
     showQuizButtons();
     startTimer();
+    // localStorage.savedScores= "High Scores: ";
     renderOneRound();
 
 }
