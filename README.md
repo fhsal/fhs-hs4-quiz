@@ -22,6 +22,8 @@ Once the quiz ends, the user is presented with different buttons - they can rest
 
 There are a variety of functions and elements built in the script file to show/hide buttons, start/stop the game and timer, and save/clear scores from local storage. 
 
+Added some additional questions - beyond the four I had been using for testing 
+
 
 
 

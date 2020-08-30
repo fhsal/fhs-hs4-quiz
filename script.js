@@ -304,7 +304,47 @@ var questArray = [
         d: "Puru",
       },
       answer: "d"
-    }
+    },
+    {
+      question: "what is javascript?",
+      choices: {
+        a: "Coffee for writers",
+        b: "A programming language",
+        c: "A type of font",
+        d: "An island of Indonesia",
+      },
+      answer: "b"
+    },
+    {
+      question: "what is an array?",
+      choices: {
+        a: "A row of fish",
+        b: "A secret weapon",
+        c: "A data structure",
+        d: "Your uncle named Ray",
+      },
+      answer: "c"
+    },
+    {
+      question: "what is a local variable?",
+      choices: {
+        a: "The name of a bar",
+        b: "A variable used globally",
+        c: "A constant",
+        d: "Defined in a function",
+      },
+      answer: "d"
+    },
+    {
+      question: "what is full-stack engineering?",
+      choices: {
+        a: "Front-end sw development",
+        b: "Back-end sw development",
+        c: "end-to-end sw development",
+        d: "Pancakes to order",
+      },
+      answer: "c"
+    },
   ];
 
 
