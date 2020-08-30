@@ -7,7 +7,7 @@ url of the page is: https://fhsal.github.io/hw4-quiz/index3.html
 
 url of the Github repository is:  https://github.com/fhsal/hw4-quiz
 
-I don't know how to store an image in this file type for readme, so the image screen shot is also in Github
+I don't know how to store an image in this file type for readme, so the image screen shot is also in Github at : https://github.com/fhsal/hw4-quiz/blob/master/fhs-quiz-screenshot.jpg
 
 
 Summary: 
