@@ -50,7 +50,6 @@ function showEndQuizButtons() {
   document.getElementById("clearHighScores").style.visibility= "visible";
   
 }
-// comment
 
 // test answer to determine if it is correct.  color time box red if wrong, display message and debit timeLeft,
 // reset color in time box to white if correct and increase score
@@ -255,11 +254,17 @@ var questArray = [
 
 hideButtons()
 
+function reStartQuiz() {
+
+  stopTimer();
+  startQuiz();
+}
+
 function startQuiz() {
 
     round = 0;
     // numberOfAnswers = 0;
-    timeLeft = 120;
+    totalTime = 120;
     hideButtons();
     showQuizButtons();
     startTimer();
