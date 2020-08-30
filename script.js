@@ -11,8 +11,8 @@ var response ="";
 var score = 0;
 var totalTime = 120;
 var secondsElapsed = 0;
-var timeLeft = totalTime - secondsElapsed
-var interval 
+var timeLeft;
+var interval;
 var highScores = "";
 var savedScores = "";
 var initials = "";
@@ -35,21 +35,21 @@ document.getElementById("clearHighScores").style.visibility= "hidden";
 function showQuizButtons() {
   document.getElementById("startBtn").style.visibility= "hidden";
   document.getElementById("nextQuestion").style.visibility= "visible";
-  document.getElementById("StartOver").style.visibility= "visible";
+  document.getElementById("StartOver").style.visibility= "hidden";
   document.getElementById("submitInitials").style.visibility= "hidden";
   document.getElementById("clearHighScores").style.visibility= "hidden";
   
-  }
+}
 
-  function showEndQuizButtons() {
+function showEndQuizButtons() {
 
-    document.getElementById("startBtn").style.visibility= "hidden";
-    document.getElementById("nextQuestion").style.visibility= "hidden";
-    document.getElementById("StartOver").style.visibility= "visible";
-    document.getElementById("submitInitials").style.visibility= "visible";
-    document.getElementById("clearHighScores").style.visibility= "visible";
-    
-    }
+  document.getElementById("startBtn").style.visibility= "hidden";
+  document.getElementById("nextQuestion").style.visibility= "hidden";
+  document.getElementById("StartOver").style.visibility= "visible";
+  document.getElementById("submitInitials").style.visibility= "visible";
+  document.getElementById("clearHighScores").style.visibility= "visible";
+  
+}
 
 
 // test answer to determine if it is correct.  color time box red if wrong, display message and debit timeLeft,
@@ -58,13 +58,12 @@ function showQuizButtons() {
 function testAnswer(response) {
     
   document.getElementById("scoreDisplay").style.visibility= "visible";
-  // numberOfAnswers = numberOfAnswers + 1
 
     if ((response === answer)) {
 
           score=score+10;
           document.getElementById("timerDisplay").setAttribute ("style" ,
-                          "margin-left: 235px; background-color: white; width: auto")
+                          "margin-left: 235px; background-color: white; width: auto");
           document.getElementById("errorDisplay").style.visibility= "hidden";
           document.getElementById("scoreDisplay").innerHTML = (score);
           document.getElementById("scoreDisplay").style.width= "55px";
@@ -79,21 +78,21 @@ function testAnswer(response) {
 
       else {
           score = score-5;
-          timeLeft= timeLeft - 20;
+          stopTimer();
+          totalTime= timeLeft - 20;
+          startTimer();
+
           console.log("wrong answer");
           console.log("round "+ round);
           document.getElementById("timerDisplay").setAttribute ("style" ,
-                          "margin-left: 235px; background-color: orangered; color: white; width: auto")
+                          "margin-left: 235px; background-color: orangered; color: white; width: auto");
           document.getElementById("errorDisplay").style.visibility= "visible";
           document.getElementById("scoreDisplay").innerHTML = (score);
           document.getElementById("scoreDisplay").style.width= "55px";
 
-
-
-          nextRound()
+          nextRound();
 
       }
-    // }
   }
 
 
@@ -114,12 +113,10 @@ function clearScores() {
 
 }
 
-
-
 function nextRound() {
 
   document.getElementById("timerDisplay").setAttribute ("style" ,
-  "margin-left: 235px; background-color: white; color: black; width: auto")
+  "margin-left: 235px; background-color: white; color: black; width: auto");
 
     if(timeLeft>0 && (questArray.length > round)) {
 
@@ -127,8 +124,8 @@ function nextRound() {
 
     else { 
 
-      alert("Game Over")
       stopTimer()
+      alert("Game Over")
       showEndQuizButtons()
 
       }
@@ -144,19 +141,13 @@ function renderTime () {
 
   else { 
     
-    clearInterval(interval);
     alert("Time up!")
     stopTimer()
     showEndQuizButtons()
 
-}
-
   }
 
-
-  // document.getElementById("passwrd-display").setAttribute ("style" ,
-  //                     "background-color:lightgoldenrodyellow");
-
+}
 
 function stopTimer(){ clearInterval(interval)}
 
@@ -174,7 +165,7 @@ function startTimer() {
         timeLeft = totalTime - secondsElapsed;
         console.log(timeLeft);
 
-        renderTime() 
+        renderTime()
       }, 1000);
 }
 
@@ -210,14 +201,6 @@ var submitInitials = document.getElementById("submitInitials");
 
 var clearHighScores = document.getElementById("clearHighScores");
   clearHighScores.addEventListener("click", clearScores);
-
-
-
-
-
-// document.getElementById("nextQuestion").addEventListener("click", function(){
-// //   alert("Hello World");
-// // });
 
 
 // setting up questions object 
@@ -285,9 +268,7 @@ function startQuiz() {
 
 }
 
-
-
-// render a single question round
+// render a single question round and increment round count
 
 function renderOneRound() {
 
