@@ -51,7 +51,52 @@ function showEndQuizButtons() {
   
 }
 
-// test answer to determine if it is correct.  color time box red if wrong, display message and debit timeLeft,
+// function to start quiz.  It resets time and calls functions to change the buttons which are relevant to quiz time
+// and renders one round of questions
+
+hideButtons()
+
+function reStartQuiz() {
+
+  stopTimer();
+  startQuiz();
+}
+
+function startQuiz() {
+
+    round = 0;
+    timeLeft = 120;
+    totalTime = 120;
+    hideButtons();
+    showQuizButtons();
+    startTimer();
+    renderOneRound();
+
+}
+
+// render a single question round and increment round count
+
+function renderOneRound() {
+
+    quest= questArray[round].question;
+    answer= questArray[round].answer;
+    chA= questArray[round].choices.a;
+    chB= questArray[round].choices.b;
+    chC= questArray[round].choices.c;
+    chD= questArray[round].choices.d;
+
+    document.getElementById("question-display").innerHTML = quest;
+    document.getElementById("answerOne").innerHTML = chA;
+    document.getElementById("answerTwo").innerHTML = chB;
+    document.getElementById("answerThree").innerHTML = chC;
+    document.getElementById("answerFour").innerHTML = chD;
+    
+    round=round+1
+    }
+
+
+
+// test answer to determine if it is correct.  If incorrect show error message and debit timeLeft & score,
 // reset color in time box to white if correct and increase score
 
 function testAnswer(response) {
@@ -95,6 +140,9 @@ function testAnswer(response) {
   }
 
 
+// function to allow user to save quiz scores in local storage.  Appends current saved scores to exisiting saved scores
+
+
 function saveScore() {
 
   initials = prompt("enter your initials to save score!");
@@ -105,12 +153,16 @@ function saveScore() {
 
 }
 
+// function to allow user to clear saved quiz scores from display and local storage 
+
 function clearScores() {
   localStorage.clear()
   localStorage.savedScores = "High Scores: "
   document.getElementById("showHighScores").innerHTML = "";
 
 }
+
+// function to allow user to start another round of the quiz 
 
 function nextRound() {
 
@@ -130,7 +182,7 @@ function nextRound() {
       }
     }
 
-// timer block
+// timer block, counts down from variable "totalTime"
 
 function renderTime () {
 
@@ -148,7 +200,11 @@ function renderTime () {
 
 }
 
+// function to stop the timer
+
 function stopTimer(){ clearInterval(interval)}
+
+// function to start the timer and call render time each second
 
 function startTimer() {
   
@@ -167,6 +223,8 @@ function startTimer() {
         renderTime()
       }, 1000);
 }
+
+// listener for the start quiz button
 
 
 var startQ = document.getElementById("startBtn");
@@ -250,49 +308,6 @@ var questArray = [
   ];
 
 
-// start quiz by initializing time and round count and generating fist set of questions 
-
-hideButtons()
-
-function reStartQuiz() {
-
-  stopTimer();
-  startQuiz();
-}
-
-function startQuiz() {
-
-    round = 0;
-    // numberOfAnswers = 0;
-    timeLeft = 120;
-    totalTime = 120;
-    hideButtons();
-    showQuizButtons();
-    startTimer();
-    // localStorage.savedScores= "High Scores: ";
-    renderOneRound();
-
-}
-
-// render a single question round and increment round count
-
-function renderOneRound() {
-
-    quest= questArray[round].question;
-    answer= questArray[round].answer;
-    chA= questArray[round].choices.a;
-    chB= questArray[round].choices.b;
-    chC= questArray[round].choices.c;
-    chD= questArray[round].choices.d;
-
-    document.getElementById("question-display").innerHTML = quest;
-    document.getElementById("answerOne").innerHTML = chA;
-    document.getElementById("answerTwo").innerHTML = chB;
-    document.getElementById("answerThree").innerHTML = chC;
-    document.getElementById("answerFour").innerHTML = chD;
-    
-    round=round+1
-    }
 
 
 

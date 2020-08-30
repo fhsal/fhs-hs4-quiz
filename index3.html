@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Document</title>
+    <title>F. salvo quiz homework #4</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+<!-- button elements at top of page to start quiz and display the timer -->
 
     <div class="button">
         <br>
@@ -17,12 +19,16 @@
         <button id="timerDisplay" style= "margin-left: 200px; color: rgb(11, 112, 19); width: auto"> 120 seconds for quiz </button>
     </div>
 
+<!-- button elements to show score and display message when incorrect answer is selected -->
+
       <div class="button">
         <br>
       <button id="errorDisplay" style= "margin-left: 300px; width: auto; border:none; color: white; background-color: orangered" float: right> incorrect answer </button>
       <button id="scoreDisplay" style= "width: auto" > score</button> 
       </div>
   
+
+<!-- buttons for user to select quiz answers -->
 
     <p> <h2 style= "margin-left: 25px; width: auto; Padding-top: 5px"> Question </h2></p>
 
@@ -47,6 +53,9 @@
 
           </div>
   
+
+<!-- buttons for user actions during and after quiz  -->
+
     <div> 
         <button id="nextQuestion" class="btn" > Next Question </button>
         <button id="StartOver" class="btn"> Start Over </button>
@@ -54,6 +63,9 @@
         <button id="clearHighScores" class="btn"> Clear High Scores </button>
     </div>
     <br>
+
+<!-- display saved scores -->
+
     <P id = showHighScores style= "margin-left: 25px"> High Scores: </p><br>
 
 
