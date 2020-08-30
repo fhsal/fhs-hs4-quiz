@@ -50,7 +50,7 @@ function showEndQuizButtons() {
   document.getElementById("clearHighScores").style.visibility= "visible";
   
 }
-
+// comment
 
 // test answer to determine if it is correct.  color time box red if wrong, display message and debit timeLeft,
 // reset color in time box to white if correct and increase score
