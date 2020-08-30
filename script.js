@@ -1,5 +1,5 @@
 
-
+// comment
 var pos = 0;
 var correct = 0;
 var test, test_status, quest, choice, choices, chA, chB, chC, chD;
