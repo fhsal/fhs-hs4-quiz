@@ -264,6 +264,7 @@ function startQuiz() {
 
     round = 0;
     // numberOfAnswers = 0;
+    timeLeft = 120;
     totalTime = 120;
     hideButtons();
     showQuizButtons();
