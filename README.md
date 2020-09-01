@@ -11,7 +11,7 @@ I don't know how to store an image in this file type for readme, so the image sc
 
 added this link during office hours today
 
-https://user-images.githubusercontent.com/68975104/91785358-33ecb880-ebd3-11ea-8550-827b8c8fe450.jpg
+![image](https://user-images.githubusercontent.com/68975104/91785641-e3298f80-ebd3-11ea-9bd2-49d630ea338f.jpg)
 
 Summary: 
 
